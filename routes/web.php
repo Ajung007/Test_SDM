@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,16 +14,25 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified',
-])->group(function () {
+
+Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',])->group(function () {
+
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+
+    Route::group(['prefix' => 'sdm'], function () {
+        Route::get('/', [DashboardController::class, 'index'])->name('sdm.index');
+        Route::get('/question', [DashboardController::class, 'question'])->name('sdm.question');
+        Route::get('/question/add', [DashboardController::class, 'add'])->name('sdm.add.question');
+        Route::post('/question/add', [DashboardController::class, 'post'])->name('sdm.post.question');
+        Route::get('/question/edit/{id}', [DashboardController::class, 'edit'])->name('sdm.edit.question');
+        Route::post('/question/edit/{id}', [DashboardController::class, 'update'])->name('sdm.update.question');
+    });
+
+
 });
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
