@@ -15,7 +15,7 @@
     @include('sdm.master.style.styles')
 
   </head>
-  <body onload="startTime()"> 
+  <body> 
     <!-- loader starts-->
 
     <!-- loader ends-->

@@ -41,6 +41,7 @@
                   <use href="{{ asset('assets/svg/icon-sprite.svg#fill-project') }}"></use>
                 </svg><span>Parameter</span></a>
               <ul class="sidebar-submenu">
+                <li><a href="{{ route('sdm.kategori') }}">Kategori</a></li>
                 <li><a href="{{ route('sdm.question') }}">Pertanyaan</a></li>
                 <li><a href="">Jawaban</a></li>
               </ul>

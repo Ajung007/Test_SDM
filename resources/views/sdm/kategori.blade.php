@@ -1,6 +1,6 @@
 @extends('sdm.master.index')
 
-@section('title','pertanyaan')
+@section('title','Kategori')
 
 @section('content')
 
@@ -9,7 +9,7 @@
     <div class="col-sm-12">
       <div class="card">
         <div class="card-header pb-0 card-no-border">
-            <a href="{{ route('sdm.add.question') }}" class="btn btn-danger">Tambah Data</a>
+            <a href="{{ route('sdm.add.kategori') }}" class="btn btn-warning">Tambah Kategori</a>
         </div>
 
         <div class="card-body">
@@ -19,27 +19,26 @@
                 <tr>
                   <th>No</th>
                   <th>Kategori</th>
-                  <th>Pertanyaan</th>
-                  <th colspan="2">Action</th>                 
+                  <th>Action</th>                 
                 </tr>
               </thead>
               <tbody>
                 @php
                     $no=1;
                 @endphp
-               @forelse ($data as $item)
+               @forelse ($kategori as $item)
                <tr>
-                   <td>{{ $no++ }}</td>
-                   <td>{{ $item->category->kategori ?? null }}</td>
-                   <td>{{ $item->pertanyaan }}</td>
+                   <td>{{ $no++ }}</td>             
+                   <td>{{ $item->kategori }}</td>
                    <td>
-                    <a href="{{ route('sdm.edit.question', $item->id) }}" class="btn btn-primary">Edit</a>
-                    <a href="{{ route('sdm.answer', $item->id) }}" class="btn btn-warning">answare</a>
-                   </td>                  
+                    <a href="{{ route('sdm.show.kategori', $item->id) }}" class="btn btn-primary">Edit</a>
+                    <a href="#" class="btn btn-danger">Delete</a>
+                   </td>
+                                
                 </tr>
                 @empty
                 <tr>
-                  <td colspan="4">Data Kosong</td>
+                    <td colspan="5">Kosong</td>
                 </tr>
                @endforelse
               </tbody>

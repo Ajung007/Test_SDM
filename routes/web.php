@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\QuestionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,12 +26,28 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
     })->name('dashboard');
 
     Route::group(['prefix' => 'sdm'], function () {
+        // Dashboard
         Route::get('/', [DashboardController::class, 'index'])->name('sdm.index');
-        Route::get('/question', [DashboardController::class, 'question'])->name('sdm.question');
-        Route::get('/question/add', [DashboardController::class, 'add'])->name('sdm.add.question');
-        Route::post('/question/add', [DashboardController::class, 'post'])->name('sdm.post.question');
-        Route::get('/question/edit/{id}', [DashboardController::class, 'edit'])->name('sdm.edit.question');
-        Route::post('/question/edit/{id}', [DashboardController::class, 'update'])->name('sdm.update.question');
+
+        // Kategori
+        Route::get('/kategori', [KategoriController::class, 'kategori'])->name('sdm.kategori');
+        Route::get('/kategori/add', [KategoriController::class, 'add'])->name('sdm.add.kategori');
+        Route::post('/kategori/add', [KategoriController::class, 'post'])->name('sdm.post.kategori');
+        Route::get('/kategori/show/{id}', [KategoriController::class, 'show'])->name('sdm.show.kategori');
+        Route::post('/kategori/update/{id}', [KategoriController::class, 'update'])->name('sdm.update.kategori');
+
+
+        // Question
+        Route::get('/question', [QuestionController::class, 'question'])->name('sdm.question');
+        Route::get('/question/add', [QuestionController::class, 'add'])->name('sdm.add.question');
+        Route::post('/question/add', [QuestionController::class, 'post'])->name('sdm.post.question');
+        Route::get('/question/edit/{id}', [QuestionController::class, 'edit'])->name('sdm.edit.question');
+        Route::post('/question/edit/{id}', [QuestionController::class, 'update'])->name('sdm.update.question');
+
+        // Answer
+        Route::get('/answer/{id}', [AnswerController::class, 'answer'])->name('sdm.answer');
+        Route::post('/answer/{id}', [AnswerController::class, 'post'])->name('sdm.post.answer');
+        Route::post('/answer/update/{id}', [AnswerController::class, 'update'])->name('sdm.update.answer');
     });
 
 

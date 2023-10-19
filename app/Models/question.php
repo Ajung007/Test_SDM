@@ -10,8 +10,16 @@ class question extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable =
-        [
-            'pertanyaan'
-        ];
+    protected $fillable = ['kategoris_id', 'pertanyaan'];
+
+    public function category()
+    {
+        return $this->belongsTo(Kategori::class);
+    }
+
+    public function questionOptions()
+    {
+        return $this->hasMany(answer::class);
+    }
+
 }

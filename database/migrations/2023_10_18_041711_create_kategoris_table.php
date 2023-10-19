@@ -10,11 +10,9 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('answers', function (Blueprint $table) {
+        Schema::create('kategoris', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('questions_id')->unsigned()->index()->nullable();
-            $table->foreign('questions_id')->references('id')->on('questions')->onDelete('cascade');
-            $table->text('jawaban');
+            $table->text('kategori');
             $table->softDeletes();
             $table->timestamps();
         });
@@ -25,6 +23,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('answers');
+        Schema::dropIfExists('kategoris');
     }
 };
