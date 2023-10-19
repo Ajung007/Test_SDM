@@ -22,7 +22,7 @@ class QuestionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'kategoris_id ' => 'required',
+            'kategoris_id' => 'required',
             'pertanyaan' => 'required',
         ];
     }

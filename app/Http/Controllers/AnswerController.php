@@ -12,35 +12,25 @@ class AnswerController extends Controller
 {
     public function answer(Request $request, $id)
     {
-        $data = question::find($id)->first();
-        $answer = answer::join('questions', 'questions.id', '=', 'answers.questions_id')->where('questions.id', $id)->get();
+        $answer = question::find($id);
+        // dd($answer);
+        $data = question::select('id', 'pertanyaan')->where('id', $id)->first();
+        $option = answer::join('questions', 'questions.id', '=', 'answers.questions_id')
+            ->where('questions.id', $id)
+            ->get();
 
-        $test = DB::table('answers')->where('id', $id)->first();
-
-        return view('sdm.answer', ['data' => $data, 'answer' => $answer, 'test' => $test]);
+        return view('sdm.answer', ['data' => $data, 'option' => $option, 'answer' => $answer]);
     }
 
-    public function answerPost(Request $request, $id)
+    public function post(Request $request, $id)
     {
         $data = question::find($id);
-        $validator = Validator::make(
-            $request->all(),
-            [
-                'tambah' => 'required'
-            ]
-        );
 
-        if ($validator->fails()) {
-            return redirect()
-                ->route('sdm.answer', $data->id)
-                ->withErrors($validator)
-                ->withInput();
-        }
-
-        answer::create([
-            'questions_id' => $request->questions_id,
-            'jawaban' => $request->tambah,
+        $data = answer::create([
+            'questions_id' => $request->idQuestion,
+            'jawaban' => $request->jawaban,
         ]);
+        // dd($data);
 
         return back();
     }

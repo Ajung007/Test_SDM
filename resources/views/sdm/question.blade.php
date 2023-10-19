@@ -30,10 +30,10 @@
                @forelse ($data as $item)
                <tr>
                    <td>{{ $no++ }}</td>
-                   <td>{{ $item->category->kategori ?? null }}</td>
+                   <td>{{ $item->kategori }}</td>
                    <td>{{ $item->pertanyaan }}</td>
                    <td>
-                    <a href="{{ route('sdm.edit.question', $item->id) }}" class="btn btn-primary">Edit</a>
+                    <a href="{{ route('sdm.edit.question' ,['id' => $item->id ])}}" class="btn btn-primary">Edit</a>
                     <a href="{{ route('sdm.answer', $item->id) }}" class="btn btn-warning">answare</a>
                    </td>                  
                 </tr>

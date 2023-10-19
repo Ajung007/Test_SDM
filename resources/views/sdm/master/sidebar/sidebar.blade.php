@@ -43,7 +43,7 @@
               <ul class="sidebar-submenu">
                 <li><a href="{{ route('sdm.kategori') }}">Kategori</a></li>
                 <li><a href="{{ route('sdm.question') }}">Pertanyaan</a></li>
-                <li><a href="">Jawaban</a></li>
+                {{-- <li><a href="{{ route('sdm.answer') }}">Jawaban</a></li> --}}
               </ul>
             </li>
        

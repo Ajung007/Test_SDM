@@ -13,7 +13,9 @@ class QuestionController extends Controller
 {
     public function question(Request $request)
     {
-        $data = question::all();
+        $data = question::join('kategoris', 'kategoris.id', '=', 'questions.kategoris_id')
+            ->select('kategoris.kategori', 'questions.id as id', 'questions.pertanyaan')
+            ->get();
 
         return view('sdm.question', ['data' => $data]);
     }
@@ -25,33 +27,36 @@ class QuestionController extends Controller
         return view('sdm.addquestion', ['kategoris' => $kategoris]);
     }
 
-    public function post(Request $request)
+    public function post(QuestionRequest $request)
     {
 
-        $request->all();
-
         $test = question::create([
-            'kategoris_id ' => $request->kategoris_id,
+            'kategoris_id' => $request->kategoris_id,
             'pertanyaan' => $request->pertanyaan
         ]);
-
-        dd($test);
 
         return redirect()->route('sdm.question');
     }
 
     public function edit($id)
     {
-        $data = DB::table('questions')->where('id', $id)->first();
+        $kategoris = Kategori::all();
 
-        return view('sdm.editquestion', ['data' => $data]);
+        $data = question::join('kategoris', 'kategoris.id', '=', 'questions.kategoris_id')
+            ->select('kategoris.kategori', 'questions.id as id', 'questions.pertanyaan', 'kategoris.id as idKategori')
+            ->where('questions.id', $id)
+            ->first();
+
+        return view('sdm.editquestion', ['data' => $data, 'kategoris' => $kategoris]);
     }
 
     public function update(Request $request, $id)
     {
         $data = question::find($id);
+
         $data->update([
-            'pertanyaan' => $request->tambah
+            'kategoris_id' => $request->kategoris_id,
+            'pertanyaan' => $request->pertanyaan
         ]);
 
         return redirect()->route('sdm.question');
