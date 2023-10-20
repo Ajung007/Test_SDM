@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\TesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,7 +18,6 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
 
 
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',])->group(function () {
@@ -57,3 +58,5 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/tes',[TesController::class,'index'])->name('tes.index');

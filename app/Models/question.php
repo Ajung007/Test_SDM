@@ -19,7 +19,7 @@ class question extends Model
 
     public function questionOptions()
     {
-        return $this->hasMany(answer::class);
+        return $this->hasMany(answer::class, 'questions_id');
     }
 
 }
