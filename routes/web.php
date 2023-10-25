@@ -39,7 +39,6 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
         Route::get('/kategori/show/{id}', [KategoriController::class, 'show'])->name('sdm.show.kategori');
         Route::post('/kategori/update/{id}', [KategoriController::class, 'update'])->name('sdm.update.kategori');
 
-
         // Question
         Route::get('/question', [QuestionController::class, 'question'])->name('sdm.question');
         Route::get('/question/add', [QuestionController::class, 'add'])->name('sdm.add.question');
@@ -59,4 +58,4 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/tes',[TesController::class,'index'])->name('tes.index');
+Route::get('/tes', [TesController::class, 'index'])->name('tes.index');

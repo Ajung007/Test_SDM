@@ -17,7 +17,16 @@ class QuestionController extends Controller
             ->select('kategoris.kategori', 'questions.id as id', 'questions.pertanyaan')
             ->get();
 
-        return view('sdm.question', ['data' => $data]);
+        $count = question::join('answers', 'answers.questions_id', '=', 'questions.id')
+            ->select('jawaban')
+            ->where('questions_id', '>', 0)
+            ->get();
+
+        // $data = question::with(['category', 'questionOptions'])->get();
+
+        // dd($count);
+
+        return view('sdm.question', ['data' => $data, 'count' => $count]);
     }
 
     public function add(Request $request)

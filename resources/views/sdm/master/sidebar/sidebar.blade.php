@@ -55,11 +55,13 @@
                   <use href="{{ asset('assets/svg/icon-sprite.svg#fill-user') }}"></use>
                 </svg><span>Users</span></a>
               <ul class="sidebar-submenu">
-                <li><a href="user-profile.html">Users Profile</a></li>
-                <li><a href="edit-profile.html">Users Edit</a></li>
-                <li><a href="user-cards.html">Users Cards</a></li>
+                <li><a href="{{ route('tes.index') }}">Test User</a></li>
+                {{-- <li><a href="edit-profile.html">Users Edit</a></li>
+                <li><a href="user-cards.html">Users Cards</a></li> --}}
               </ul>
             </li>
+
+       
                        
         </div>
         {{-- <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div> --}}
