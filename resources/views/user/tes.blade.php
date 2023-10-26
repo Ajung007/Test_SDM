@@ -9,9 +9,12 @@
         <div class="card">
       
           <div class="card-body">
-            {{-- <h3>{{ $answer->pertanyaan }}</h3> --}}
+            {{-- <span>Perhatian dan Kerjakan </span> --}}
+            <button class="btn btn-danger" id="start" onclick="start()">Mulai</button>
+            
             <br>
-            <form method="POST" action="#">
+            <div style="display: none" id="pertanyaan">
+            <form method="POST" action="{{ route('test.post') }}">
                 @csrf
                 @foreach ($categories as $category)
                 <div class="card mb-3">
@@ -48,9 +51,10 @@
              
               <br>
               <div class="col-12">
-                <button class="btn btn-primary" type="submit">Submit form</button>
+                <button class="btn btn-primary" type="submit" style="display: none" id="button">Submit form</button>
               </div>
             </form>
+          </div>
           </div>
 
         </div>
@@ -58,5 +62,21 @@
     </div>
 
  
+@push('script')
+  <script>
+    var form = document.getElementById('pertanyaan');
+    var button = document.getElementById('button');
+    var buttonStart = document.getElementById('start');
 
+    function start()
+    {
+      form.style.display = 'block';
+      button.style.display = 'block';
+      buttonStart.style.display = 'none';
+
+      
+    }
+
+  </script>
+@endpush
 @endsection

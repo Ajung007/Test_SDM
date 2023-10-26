@@ -10,9 +10,10 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::table('questions', function (Blueprint $table) {
-            $table->bigInteger('kategoris_id')->unsigned()->nullable()->after('id');
-            $table->foreign('ketegoris_id')->references('id')->on('kategoris');
+        Schema::table('testing', function (Blueprint $table) {
+            $table->id();
+            $table->json('data')->nullable();
+            $table->timestamps();
         });
     }
 
@@ -21,8 +22,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::table('questions', function (Blueprint $table) {
-            $table->dropColumn('kategoris_id');
-        });
+        //
     }
 };

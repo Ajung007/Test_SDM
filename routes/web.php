@@ -59,3 +59,4 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/tes', [TesController::class, 'index'])->name('tes.index');
+Route::post('/tes/save', [TesController::class, 'store'])->name('test.post');

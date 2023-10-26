@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kategori;
+use App\Models\TestingModel;
 use Illuminate\Http\Request;
 
 class TesController extends Controller
@@ -28,4 +29,10 @@ class TesController extends Controller
 
         return view('user.tes', ['categories' => $categories]);
     }
+
+
+
+
+
+
 }
