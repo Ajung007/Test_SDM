@@ -20,8 +20,7 @@
                   <th>No</th>
                   <th>Kategori</th>
                   <th>Pertanyaan</th>
-                  <th>Jawaban</th>
-                  <th colspan="2">Action</th>                 
+                  <th>Action</th>                 
                 </tr>
               </thead>
               <tbody>
@@ -33,9 +32,9 @@
                    <td>{{ $no++ }}</td>
                    <td>{{ $item->kategori }}</td>
                    <td>{{ $item->pertanyaan }}</td>
-                   <td>{{ $item->jawaban }}</td>
                    <td>
                     <a href="{{ route('sdm.edit.question' ,['id' => $item->id ])}}" class="btn btn-primary">Edit</a>
+                    <a href="{{ route('sdm.delete.question', ['id' => $item->id]) }}" class="btn btn-danger">Delete</a>
                     <a href="{{ route('sdm.answer', $item->id) }}" class="btn btn-warning">answare</a>
                    </td>                  
                 </tr>

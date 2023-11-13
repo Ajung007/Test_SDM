@@ -32,7 +32,7 @@
                    <td>{{ $item->kategori }}</td>
                    <td>
                     <a href="{{ route('sdm.show.kategori', $item->id) }}" class="btn btn-primary">Edit</a>
-                    <a href="#" class="btn btn-danger">Delete</a>
+                    <a href="{{ route('sdm.delete.kategori', $item->id) }}" class="btn btn-danger">Delete</a>
                    </td>
                                 
                 </tr>

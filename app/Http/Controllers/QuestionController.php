@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\QuestionRequest;
+use App\Models\answer;
 use App\Models\Kategori;
 use App\Models\question;
 use DB;
@@ -16,18 +17,11 @@ class QuestionController extends Controller
         $data = question::join('kategoris', 'kategoris.id', '=', 'questions.kategoris_id')
             ->select('kategoris.kategori', 'questions.id as id', 'questions.pertanyaan')
             ->get();
-
-        $count = question::join('answers', 'answers.questions_id', '=', 'questions.id')
-            ->select('jawaban')
-            ->where('questions_id', '>', 0)
-            ->get();
-
         // $data = question::with(['category', 'questionOptions'])->get();
 
-        // dd($count);
-
-        return view('sdm.question', ['data' => $data, 'count' => $count]);
+        return view('sdm.question', ['data' => $data]);
     }
+
 
     public function add(Request $request)
     {
@@ -67,6 +61,14 @@ class QuestionController extends Controller
             'kategoris_id' => $request->kategoris_id,
             'pertanyaan' => $request->pertanyaan
         ]);
+
+        return redirect()->route('sdm.question');
+    }
+
+    public function delete($id)
+    {
+        $data = question::find($id);
+        $data->delete();
 
         return redirect()->route('sdm.question');
     }

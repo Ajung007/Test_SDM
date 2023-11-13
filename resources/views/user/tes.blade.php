@@ -11,7 +11,7 @@
           <div class="card-body">
             {{-- <span>Perhatian dan Kerjakan </span> --}}
             <button class="btn btn-danger" id="start" onclick="start()">Mulai</button>
-            
+            <span id="timer"></span>
             <br>
             <div style="display: none" id="pertanyaan">
             <form method="POST" action="{{ route('test.post') }}">
@@ -67,6 +67,8 @@
     var form = document.getElementById('pertanyaan');
     var button = document.getElementById('button');
     var buttonStart = document.getElementById('start');
+    var sec = 15;
+    var time = setInterval(start, 1000);
 
     function start()
     {
@@ -74,7 +76,13 @@
       button.style.display = 'block';
       buttonStart.style.display = 'none';
 
-      
+      // document.getElementById('timer').innerHTML = sec + "Waktu";
+      // sec--;
+      // if(sec == -1)
+      // {
+      //   clearInterval(time);
+      //   alert("waktu habis!");
+      // }
     }
 
   </script>

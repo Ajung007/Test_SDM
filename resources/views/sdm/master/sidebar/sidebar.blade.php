@@ -23,7 +23,7 @@
               </div>
             </li>
             <li class="sidebar-list"><i class="fa fa-thumb-tack"></i>
-              <label class="badge badge-light-primary">8</label><a class="sidebar-link sidebar-title" href="#">
+              <a class="sidebar-link sidebar-title" href="{{ route('sdm.index') }}">
                 <svg class="stroke-icon">
                   <use href="{{ asset('assets/svg/icon-sprite.svg#stroke-home') }}"></use>
                 </svg>

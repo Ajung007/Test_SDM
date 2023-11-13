@@ -56,9 +56,15 @@ class KategoriController extends Controller
             'kategori' => $request->tambah
         ]);
 
+        return redirect()->route('sdm.kategori');
+    }
+
+    public function delete($id)
+    {
+        $data = Kategori::find($id);
+        $data->delete();
 
         return redirect()->route('sdm.kategori');
-
     }
 
 }
