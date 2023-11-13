@@ -14,36 +14,32 @@ class AnswerController extends Controller
     public function index()
     {
         $data = answer::join('questions','answers.questions_id','=','questions.id')->get();
-
-        return view('sdm.answer.index', ['data' => $data]);
-    }
-
-    public function show(Request $request, $id)
-    {
-   
-        $data = answer::join('questions','answers.questions_id','=','questions.id')->where('answers.id', $id)->first();
-
-        // dd($questions);
+        $items = question::all();
         
-        return view('sdm.answer.show', ['data' => $data]);
+        return view('sdm.answer.index', ['data' => $data, 'items' => $items]);
     }
-
-    public function post(Request $request, $id)
+    
+    public function post(Request $request)
     {
-        $data = question::find($id);
-
-        $data = answer::create([
-            'questions_id' => $request->idQuestion,
+        answer::create([
+            'questions_id' => $request->pertanyaan,
             'jawaban' => $request->jawaban,
         ]);
-        // dd($data);
 
         return back();
     }
 
+    public function show(Request $request, $id)
+    {   
+        $data = answer::join('questions','answers.questions_id','=','questions.id')
+        ->where('answers.id', $id)
+        ->first();
+        
+        return view('sdm.answer.show', ['data' => $data]);
+    }
+
     public function update(Request $request, $id)
     {
-
         $data = answer::where('id', $id);
         $data->update([
             'jawaban' => $request->editJawaban

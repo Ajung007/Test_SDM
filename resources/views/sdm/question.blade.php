@@ -34,8 +34,7 @@
                    <td>{{ $item->pertanyaan }}</td>
                    <td>
                     <a href="{{ route('sdm.edit.question' ,['id' => $item->id ])}}" class="btn btn-primary">Edit</a>
-                    <a href="{{ route('sdm.delete.question', ['id' => $item->id]) }}" class="btn btn-danger">Delete</a>
-                    <a href="{{ route('sdm.answer', $item->id) }}" class="btn btn-warning">answare</a>
+                    <a href="{{ route('sdm.delete.question', ['id' => $item->id]) }}" class="btn btn-danger">Delete</a>   
                    </td>                  
                 </tr>
                 @empty
