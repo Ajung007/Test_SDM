@@ -10,16 +10,22 @@ use Illuminate\Support\Facades\Validator;
 
 class AnswerController extends Controller
 {
-    public function answer(Request $request, $id)
-    {
-        $answer = question::find($id);
-        // dd($answer);
-        $data = question::select('id', 'pertanyaan')->where('id', $id)->first();
-        $option = answer::join('questions', 'questions.id', '=', 'answers.questions_id')
-            ->where('questions.id', $id)
-            ->get();
 
-        return view('sdm.answer', ['data' => $data, 'option' => $option, 'answer' => $answer]);
+    public function index()
+    {
+        $data = answer::join('questions','answers.questions_id','=','questions.id')->get();
+
+        return view('sdm.answer.index', ['data' => $data]);
+    }
+
+    public function show(Request $request, $id)
+    {
+   
+        $data = answer::join('questions','answers.questions_id','=','questions.id')->where('answers.id', $id)->first();
+
+        // dd($questions);
+        
+        return view('sdm.answer.show', ['data' => $data]);
     }
 
     public function post(Request $request, $id)
@@ -35,19 +41,15 @@ class AnswerController extends Controller
         return back();
     }
 
-    public function answerUpdate(Request $request, $id)
+    public function update(Request $request, $id)
     {
-        // $answer = answer::join('questions', 'questions.id', '=', 'answers.questions_id')
-        //     ->where('answers.id', $id)
-        //     ->update(['jawaban' => $request->edit]);
 
-        $answer = DB::table('answers')
-            ->where('id', $id)
-            ->update([
-                'jawaban' => $request->edit,
-            ]);
+        $data = answer::where('id', $id);
+        $data->update([
+            'jawaban' => $request->editJawaban
+        ]);
 
-        // dd($answer);
+
 
         return back();
     }

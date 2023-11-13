@@ -51,9 +51,13 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
         Route::get('/question/delete/{id}', [QuestionController::class, 'delete'])->name('sdm.delete.question');
 
         // Answer
-        Route::get('/answer/{id}', [AnswerController::class, 'answer'])->name('sdm.answer');
+        Route::get('/answer', [AnswerController::class, 'index'])->name('sdm.index.answer');
+        Route::get('/answer/{id}', [AnswerController::class, 'show'])->name('sdm.show.answer');
         Route::post('/answer/{id}', [AnswerController::class, 'post'])->name('sdm.post.answer');
-        Route::post('/answer/update/{id}', [AnswerController::class, 'update'])->name('sdm.update.answer');
+        Route::put('/answer/update/{id}', [AnswerController::class, 'update'])->name('sdm.update.answer');
+
+
+
     });
 
 
